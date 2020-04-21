@@ -11,7 +11,7 @@ eksctl create cluster --help
 create cluster by using yaml config file:
 
 ```bash
-eksctl create cluster -f eks-create-cluster.yaml
+eksctl create cluster -f 3-eks-create-cluster.yaml
 ```
 
 ## post-install check
