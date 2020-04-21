@@ -64,8 +64,8 @@ where the last 2 policies are the ones you created above
 * open EC2 dashboard ```https://console.aws.amazon.com/ec2```
 * click _KeyPairs_ in left navigation bar under section "Network&Security"
 * click _Create Key Pair_
-* provide name for keypair, _eks-role_ and click *_Create_*
-* !! the keypair will be downloaded immediately => file *eks-role.pem* !!
+* provide name for keypair, _eks-key_ and click *_Create_*
+* !! the keypair will be downloaded immediately => file *eks-key.pem* !!
 
 ### create API Access key/-secret
 * create key+secret via AWS console
