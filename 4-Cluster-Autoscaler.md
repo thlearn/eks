@@ -5,9 +5,9 @@ The cluster autoscaler automatically launches additional worker nodes if more re
 ## create nodegroup with autoscaler enabled
 
 ```bash
-eksctl create nodegroup --config-file=eks-course.yaml
+eksctl create nodegroup --config-file=4-create-cluster-autoscaler.yaml
 
-eksctl delete nodegroup --cluster=EKS-course-cluster --name=ng-1 --approve
+eksctl delete nodegroup --cluster=EKS-cluster --name=ng-1 --approve
 ```
 
 ## deploy the autoscaler
