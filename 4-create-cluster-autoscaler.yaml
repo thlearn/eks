@@ -1,0 +1,52 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: EKS-cluster
+  region: us-east-1
+
+nodeGroups:
+  - name: scale-east1a
+    instanceType: t2.small
+    desiredCapacity: 1
+    maxSize: 10
+    availabilityZones: ["us-east-1a"]
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+    labels:
+      nodegroup-type: stateful-east1a
+      instance-type: onDemand
+    ssh: # use existing EC2 key
+      publicKeyName: eks_key_cluster
+  - name: scale-east1d
+    instanceType: t2.small
+    desiredCapacity: 1
+    maxSize: 10
+    availabilityZones: ["us-east-1b"]
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+    labels:
+      nodegroup-type: stateful-east1b
+      instance-type: onDemand
+    ssh: # use existing EC2 key
+      publicKeyName: eks_key_cluster
+  - name: scale-spot
+    desiredCapacity: 1
+    maxSize: 10
+    instancesDistribution:
+      instanceTypes: ["t2.small", "t3.small"]
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 0
+    availabilityZones: ["us-east-1a", "us-east-1b"]
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+    labels:
+      nodegroup-type: stateless-workload
+      instance-type: spot
+    ssh:
+      publicKeyName: eks_key_cluster
+
+availabilityZones: ["us-east-1a", "us-east-1b"]
