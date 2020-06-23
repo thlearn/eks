@@ -1,4 +1,4 @@
-# k8s-prom-hpa
+# k8s-hpa
 
 Autoscaling is an approach to automatically scale up or down workloads based on the resource usage. 
 Autoscaling in Kubernetes has two dimensions: the Cluster Autoscaler that deals with node scaling 
