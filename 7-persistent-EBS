@@ -1,4 +1,4 @@
-# persistent volume
+ # persistent volume
 
 in AWS EKS a persistent volume (PV) is implemented via a EBS volume, which has to be declared as a _storage class_ first.
 A stateful app can then request a volume, by specifying a _persistent volume claim_ (PVC) and mount it in its corresponding pod.
