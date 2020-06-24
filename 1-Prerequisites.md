@@ -2,7 +2,7 @@
 eks cluster creatation using eksctl and other details about eks clsuter
 # Prerequisites
 ## IAM user and permissions
-To be able to run through this course your IAM user needs to have certain privileges to e.g. create all the required resources and objects.  According AWS Best Practices you should *never* use your root account for working with AWS services.
+To be able to run through this your IAM user needs to have certain privileges to e.g. create all the required resources and objects.  According AWS Best Practices you should *never* use your root account for working with AWS services.
 
 There are 2 attempts to follow:
 1. provide admin access  
