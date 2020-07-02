@@ -7,14 +7,14 @@ See https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 chmod +x kubectl
-sudo mv kubectl /usr/local/bin
+sudo mv kubectl /usr/bin
 ```
 
 ## Download the aws-iam-authenticator
 ```
 wget https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64
 chmod +x heptio-authenticator-aws_0.3.0_linux_amd64
-sudo mv heptio-authenticator-aws_0.3.0_linux_amd64 /usr/local/bin/heptio-authenticator-aws
+sudo mv heptio-authenticator-aws_0.3.0_linux_amd64 /usr/bin/heptio-authenticator-aws
 ```
 
 ## Modify providers.tf
