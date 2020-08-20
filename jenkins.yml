@@ -1,0 +1,150 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "docker"
+          password: "{AQAAABAAAAAQr7xrebL2DR+a7N2/2yV+rwJAioMrlxgR7vSi58PfpP4=}"
+          scope: GLOBAL
+          username: "hareshdocker"
+      - usernamePassword:
+          id: "anchore"
+          password: "{AQAAABAAAAAQS18VGNh4FORdbtZPwz1RkVD9c05GNV8SY/ckwLFrn4k=}"
+          scope: GLOBAL
+          username: "admin"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      jenkinsTunnel: "jenkins-agent:50000"
+      jenkinsUrl: "http://jenkins:8080"
+      maxRequestsPerHost: 32
+      maxRequestsPerHostStr: "32"
+      name: "kubernetes"
+      namespace: "default"
+      podLabels:
+      - key: "jenkins/jenkins-jenkins-slave"
+        value: "true"
+      serverUrl: "https://kubernetes.default"
+      templates:
+      - containers:
+        - args: "^${computer.jnlpmac} ^${computer.name}"
+          envVars:
+          - containerEnvVar:
+              key: "JENKINS_URL"
+              value: "http://jenkins.default.svc.cluster.local:8080"
+          image: "jenkins/jnlp-agent-maven:latest"
+          livenessProbe:
+            failureThreshold: 0
+            initialDelaySeconds: 0
+            periodSeconds: 0
+            successThreshold: 0
+            timeoutSeconds: 0
+          name: "jnlp"
+          resourceLimitCpu: "512m"
+          resourceLimitMemory: "512Mi"
+          resourceRequestCpu: "512m"
+          resourceRequestMemory: "512Mi"
+          workingDir: "/home/jenkins"
+        hostNetwork: false
+        label: "jenkins-jenkins-slave"
+        name: "default"
+        nodeSelector: "nodetype=ci"
+        nodeUsageMode: "NORMAL"
+        serviceAccount: "default"
+        volumes:
+        - hostPathVolume:
+            hostPath: "/bin/docker"
+            mountPath: "/bin/docker"
+        - hostPathVolume:
+            hostPath: "/var/run/docker.sock"
+            mountPath: "/var/run/docker.sock"
+        - hostPathVolume:
+            hostPath: "/bin/aws"
+            mountPath: "/bin/aws"
+        - hostPathVolume:
+            hostPath: "/bin/kubectl"
+            mountPath: "/bin/kubectl"
+        - hostPathVolume:
+            hostPath: "/bin/heptio-authenticator-aws"
+            mountPath: "/bin/heptio-authenticator-aws"
+        - hostPathVolume:
+            hostPath: "/root/.kube"
+            mountPath: "/root/.kube"
+        - hostPathVolume:
+            hostPath: "/root/.aws"
+            mountPath: "/root/.aws"
+        yamlMergeStrategy: "override"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  noUsageStatistics: true
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm: "legacy"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+unclassified:
+  anchore:
+    debug: false
+    enginepass: "{AQAAABAAAAAQEx3Lxp2ooFIfwHZjhqchCzpiawHpelB+/SF9mPLBc+4=}"
+    engineurl: "http://52.90.122.173:8228/v1"
+    engineuser: "admin"
+    engineverify: false
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  defaultFolderConfiguration:
+    healthMetrics:
+    - worstChildHealthMetric:
+        recursive: true
+  gitSCM:
+    createAccountBasedOnEmail: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://jenkins:8080/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pollSCM:
+    pollingThreadCount: 10
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
